@@ -74,7 +74,7 @@ MathPendulum::MathPendulum() : TModel()
 
 void MathPendulum::getRight( const TVector& X, long double t, TVector& Y )
 {
-    extern int mode;
+    extern int pendulum_mod;
 
     Y.resize(3);
 
@@ -82,14 +82,14 @@ void MathPendulum::getRight( const TVector& X, long double t, TVector& Y )
 
     /*	Идеальный математический маятник */
 
-    if (mode == 1)
+    if (pendulum_mod == 1)
     {
         Y[1] = -(g/l)*sin(X[0]);
     }
 
     /*	Реальный математический маятник	*/
 
-    else if (mode == 2)
+    else if (pendulum_mod == 2)
     {
         Y[1] = -g/l*sin(X[0])-(dE*X[1]);
     }
@@ -132,26 +132,26 @@ SpringPendulum::SpringPendulum() : TModel()
 
 void SpringPendulum::getRight( const TVector& X, long double t, TVector& Y )
 {
-    extern int mode;
+    extern int pendulum_mod;
 
     Y.resize(2);
 
     Y[0] = X[1];
 
     /*	Идеальный пружинный маятник	*/
-    if (mode == 3)
+    if (pendulum_mod == 3)
     {
         Y[1] = -((k*X[0])/m);
     }
 
     /*	Реальный пружинный маятник с трением вязкости	*/
-    else if (mode == 4)
+    else if (pendulum_mod == 4)
     {
         Y[1] = -((k*X[0])/m)-((mu1*X[1])/m);
     }
 
     /*	Реальный пружинный маятник с трением скольжения	*/
-    else if (mode == 5)
+    else if (pendulum_mod == 5)
     {
         if ( X[1] > 0 )
         {
@@ -166,6 +166,6 @@ void SpringPendulum::getRight( const TVector& X, long double t, TVector& Y )
             mu2 = 0;
         }
 
-        Y[1] = (mu2*g)-(k/m*X[0]);
+        Y[1] = (mu2*g)-(k*X[0]/m);
     }
 }

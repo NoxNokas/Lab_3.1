@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 
-extern int mode;
+extern int pendulum_mod;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -19,7 +19,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    mode = 1;
+    pendulum_mod = 1;
     TModel* Model = new MathPendulum();
     MainWindow::showResult(Model);
     delete Model;
@@ -28,7 +28,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    mode = 2;
+    pendulum_mod = 2;
     TModel* Model = new MathPendulum();
     MainWindow::showResult(Model);
     delete Model;
@@ -36,7 +36,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    mode = 3;
+    pendulum_mod = 3;
     TModel* Model = new SpringPendulum();
     MainWindow::showResult(Model);
     delete Model;
@@ -44,7 +44,7 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    mode = 4;
+    pendulum_mod = 4;
     TModel* Model = new SpringPendulum();
     MainWindow::showResult(Model);
     delete Model;
@@ -52,7 +52,7 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_pushButton_5_clicked()
 {
-    mode = 5;
+    pendulum_mod = 5;
     TModel* Model = new SpringPendulum();
     MainWindow::showResult(Model);
     delete Model;
