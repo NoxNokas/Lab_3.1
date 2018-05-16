@@ -18,6 +18,10 @@
 
 /*	Аргумент маятника	*/
 int pendulum_mod = 0;
+int flg = 0;
+
+int count_all = 0;
+int count_zero = 0;
 
 int main(int argc, char *argv[])
 {

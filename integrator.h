@@ -15,7 +15,7 @@ class TIntegrator
 
     public:
         // Базовый конструктор
-        TIntegrator() : Eps( 1e-16 ) {}
+        TIntegrator() : Eps( 1e-1 ) {}
         inline void setPrecision( long double Eps ) { this->Eps = Eps; }
         inline long double getPrecision() const { return Eps; }
         // Абстрактный метод, реализующий процедуру численного интегрирования и возвращающий глобальную погрешность вычислений

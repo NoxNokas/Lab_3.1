@@ -85,6 +85,7 @@ void MathPendulum::getRight( const TVector& X, long double t, TVector& Y )
     if (pendulum_mod == 1)
     {
         Y[1] = -(g/l)*sin(X[0]);
+        printf("\nY[1] = %f2.5", Y[1]);
     }
 
     /*	Реальный математический маятник	*/
@@ -92,6 +93,7 @@ void MathPendulum::getRight( const TVector& X, long double t, TVector& Y )
     else if (pendulum_mod == 2)
     {
         Y[1] = -g/l*sin(X[0])-(dE*X[1]);
+        printf("\nY[1] = %f2.5", Y[1]);
     }
 }
 
@@ -133,6 +135,8 @@ SpringPendulum::SpringPendulum() : TModel()
 void SpringPendulum::getRight( const TVector& X, long double t, TVector& Y )
 {
     extern int pendulum_mod;
+    extern int flg;
+    extern int count_all, count_zero;
 
     Y.resize(2);
 
@@ -142,17 +146,26 @@ void SpringPendulum::getRight( const TVector& X, long double t, TVector& Y )
     if (pendulum_mod == 3)
     {
         Y[1] = -((k*X[0])/m);
+       printf("\nY[1] = %f2.5", Y[1]);
     }
 
     /*	Реальный пружинный маятник с трением вязкости	*/
     else if (pendulum_mod == 4)
     {
         Y[1] = -((k*X[0])/m)-((mu1*X[1])/m);
+       printf("\nY[1] = %f2.5", Y[1]);
     }
 
     /*	Реальный пружинный маятник с трением скольжения	*/
     else if (pendulum_mod == 5)
     {
+
+        if(flg == 0)
+        {
+            printf("\nCount_all = %i", count_all);
+            printf("\nCount_zero = %i", count_zero);
+
+
         if ( X[1] > 0 )
         {
             mu2 = -0.015;
@@ -167,5 +180,19 @@ void SpringPendulum::getRight( const TVector& X, long double t, TVector& Y )
         }
 
         Y[1] = (mu2*g)-(k*X[0]/m);
+
+        count_all++;
+
+        if (abs(X[1]) < 0.0000005)
+        {
+            count_zero++;
+        }
+
+        if(((100.0/count_all)*count_zero) > 97)
+        {
+            flg = 1;
+        }
+    }
+        //}
     }
 }
