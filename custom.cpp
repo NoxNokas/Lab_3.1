@@ -135,8 +135,7 @@ SpringPendulum::SpringPendulum() : TModel()
 void SpringPendulum::getRight( const TVector& X, long double t, TVector& Y )
 {
     extern int pendulum_mod;
-    extern int flg;
-    extern int count_all, count_zero;
+
 
     Y.resize(2);
 
@@ -160,11 +159,6 @@ void SpringPendulum::getRight( const TVector& X, long double t, TVector& Y )
     else if (pendulum_mod == 5)
     {
 
-        if(flg == 0)
-        {
-            printf("\nCount_all = %i", count_all);
-            printf("\nCount_zero = %i", count_zero);
-
 
         if ( X[1] > 0 )
         {
@@ -181,18 +175,8 @@ void SpringPendulum::getRight( const TVector& X, long double t, TVector& Y )
 
         Y[1] = (mu2*g)-(k*X[0]/m);
 
-        count_all++;
 
-        if (abs(X[1]) < 0.0000005)
-        {
-            count_zero++;
-        }
+    }
 
-        if(((100.0/count_all)*count_zero) > 97)
-        {
-            flg = 1;
-        }
-    }
-        //}
-    }
+
 }

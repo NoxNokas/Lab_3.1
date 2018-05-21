@@ -61,7 +61,7 @@ void MainWindow::on_pushButton_5_clicked()
 void MainWindow::showResult(TModel* model){
 
     TIntegrator* Integrator = new TDormandPrinceIntegrator();
-        Integrator->setPrecision(1e-16);
+        Integrator->setPrecision(1e-5);
         Integrator->Run( model );
 
     TMatrix Result = model->getResult();
